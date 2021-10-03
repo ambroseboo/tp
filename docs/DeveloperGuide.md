@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-  
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -119,7 +119,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User keys in a task. 
+1. User keys in a task.
 2. The task is added to the task list.
 
     Use case ends.
@@ -128,7 +128,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User keys in an incorrect command format.
     * 1a1. System displays an error message about the incorrect format.
-    
+
     Use case ends.
 
 
@@ -136,7 +136,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User keys in an index.
 2. The task of specified index in task list is removed.
-    
+
     Use case ends.
 
 **Extensions**
@@ -176,7 +176,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case (UC09): Sort tasks**
 
-1. User keys in the parameter (desc, due, added) and order (0, 1). 
+1. User keys in the parameter (desc, due, added) and order (0, 1).
 2. System displays the tasks in the sorted order specified.
 
     Use case ends.
@@ -218,7 +218,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 | **Term** | **Meaning** |
-| ---- | --------| 
+| ---- | --------|
 |**Mainstream OS**| Windows, Linux, Unix, OS-X |
 |**Private contact detail**| A contact detail that is not meant to be shared with others|
 |**CLI**|Command-Line Interface|

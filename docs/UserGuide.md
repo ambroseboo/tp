@@ -144,7 +144,7 @@ Examples:
 
 ### Adding a Task : `addtask`
 
-Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION 
+Adds a new task (determined by what is inputted for type/TYPE) with task description as specified by d/DESCRIPTION
 for the group specified by g/GROUP.
 
 Format: `addtask d/DESCRIPTION g/GROUP type/TYPE [date/DATE]`
@@ -182,7 +182,7 @@ Examples:
     * Zhen Xuan <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
     * Ambrose <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
     * Joseph <img src="images/github.png" width="25" height="25"/> <img src="images/tele.jpeg" width="25" height="25"/> <img src="images/mail.png" width="25" height="25"/>
-  * `socials g/CS2101` returns contact information of groupmates in CS2101  
+  * `socials g/CS2101` returns contact information of groupmates in CS2101
 
 ### Sorting tasks: `sort`
 Sort tasks based on their description or their deadlines (chronologically, or the reverse), or by time added.
@@ -202,7 +202,7 @@ If the following is in the task list:
 | `Event`     | test        | 21-09-2020 2359 |
 | `Event`     | exam        | 22-09-2020 2359 |
 
-* `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam` 
+* `sort p/desc o/1` returns tasks with the following descriptions  `user guide`, `test`, `quiz`, `exam`
 * `sort p/due o/`1` returns returns tasks with the following descriptions   `test`, `exam`, `quiz`, `user guide`
 
 ### Filtering tasks by modules: filter
