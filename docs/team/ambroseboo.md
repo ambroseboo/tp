@@ -36,8 +36,95 @@ Given below are my contributions to the project.
         * Updated command summary
         * Updated documentation for `addTask` (explain recurring field)
     * Developer Guide:
-        * Added documentation for `listTasks` command
-        * Added documentation for `recurring` feature in `Task`
+        * Added documentation for implementation of `recurring` feature in `Task`
+            * Including sequence diagram for recurring frequency
 
 * **Community**:
     * Helped to spot bugs in Practical Examinations - Dry Run (PE-D) [Issues](https://github.com/ambroseboo/ped/issues)
+
+<div style="page-break-after: always;"></div>
+
+## **Contributions to the Developer Guide (Extracts)**:
+### Recurring Tasks feature
+#### Implementation
+The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
+by `RecurringFrequency`, which is a optional component of `Task`. Additionally, the following operations are implemented
+in `Task`, `TaskList`, `TaskRecords` and `Date`:
+* `Task#updateRecurringTaskDate()` - Task updates its Date to the current week/month/year, based on the
+  recurringFrequency of the Task.
+* `Date#isLastWeek()`, `Date#isLastMonth()`, `Date#isLastYear()` - Checks current Date of Task against real-time date.
+* `Date#getDateForThisWeek()`, `Date#getDateForThisMonth()`, `Date#getDateForThisYear()` - Updates Date to be within
+  current week/month/year.
+* `TaskList#updateRecurringTasksDates()` - Iterates through list of Tasks and updates its Date if Task is recurring.
+* `TaskRecords#updateRecurringTasks()` - Calls for TaskList to update recurring Tasks.
+
+`TaskRecords#updateRecurringTasks()` is used in the `ModelManager` on boot-up of the application to update all Tasks, if
+required. Below is a sequence diagram after the initialisation of the `ModelManager`:
+![Seq-diagram for updating dates of recurring Tasks after start up](images/RecurringFrequencySequenceDiagram.png)
+
+Do note that `Date` is required for a `Task` to be recurring. Notably, `Date` is optional for `Todo`.
+
+Given below is an example usage scenario of how a recurring task is added and how it behaves upon re-launching of
+the SWEe-book application.
+
+* Step 1. The user launches the application. A recurring `Task` is added, where the user specifies the
+  `recurringFrequency` to be weekly, and the `Date` to be from the previous week. The `Task` is added, but the `Date` is
+  not updated yet, even if it is not of the current week. The `recurringFrequency` of the task is marked as `week`.
+* Step 2. The user re-launches the application. `ModelManager` calls `TaskRecords#updateRecurringTasks()`, which then
+  calls `TaskList#updateRecurringTasksDates()`, which then calls `Task#updateRecurringTaskDate()` on the task added.
+  Since the `Task` added was recurring (its `recurringFrequency` is marked as `week`, its `Date` is updated to the
+  current week, with the same day.
+* Step 3. The user then launches the application a week after. The `Task` is updated similarly to Step 2, and since it
+  is checked against real-time, it is updated to the current week.
+
+#### Alternative considerations
+* Alternative 1: Let the user choose when to refresh his tasks to their new dates, rather than on start-up of the application.
+    * Pros: Allows user more control over their recurring tasks
+    * Cons: Less intuitive since tasks are not updated to real-time, having a refresh command just for recurring tasks
+      is not ideal.
+
+<div style="page-break-after: always;"></div>
+
+## **Contributions to the User Guide (Extracts)**:
+### Adding a Task : `addTask`
+
+Adds a new task to SWEe-book.
+
+Format: `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+* `GROUP` refers to one of the 2 groups: `CS2101` or `CS2103T`
+* `TYPE` refers to one of the 3 types of tasks: `todo`, `event` or `deadline`
+* `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for Todo tasks)
+* `PRIORITY` refers to one of the 3 levels of priorities / importance of the task: `low`, `med` (default) or `high`
+* `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could occur: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
+    * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must have a date.
+
+Examples:
+* `addTask d/Project meeting g/CS2103T type/todo pty/low`
+    * Add a non-recurring `todo` with no date and `low` priority and
+      task description `Project meeting` to the group `CS2103T`
+* `addTask d/Presentation 1 g/CS2101 type/deadline date/2020-11-02 pty/high`
+    * Add a non-recurring `deadline` due on `2020-11-02`
+      with `high` priority and task description `Presentation 1`to the group `CS2101`
+* `addTask d/Mock QnA 1 g/CS2101 type/event date/2020-10-02 recurring/month`
+    * Add a `event` that recurs every `month` with
+      date `2020-10-02` and default `med` priority and task description `Mock QnA` to the group `CS2101`
+
+### Command summary
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME` <br> e.g., `add n/John Doe g/CS2103T p/98765432 e/johnd@example.com tg/@johndoe gh/johndoe`
+**Clear** | `clear`
+**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [g/GROUP1] [g/GROUP2] [p/PHONE] [e/EMAIL] [tg/TELEGRAM] [gh/GITHUB]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Group** | `group GROUP` <br> e.g., `group CS2103T`
+**List** | `list`
+**Help** | `help`
+**Add Task** | `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+**Edit Task** | `editTask INDEX [d/DESCRIPTION] [g/GROUP] [type/TYPE] [date/DATE] [pty/PRIORITY] [recurring/RECURRING_FREQUENCY]`
+**Delete Task** | `deleteTask INDEX`
+**Done Task** | `doneTask INDEX`
+**Sort Tasks** | `sortTasks p/PARAMETER o/ORDER` <br> e.g., `sortTasks p/desc o/1`
+**Filter Tasks** | `filterTasks FILTER_CRITERION` <br> e.g., `filterTasks g/CS2101`
+**List Tasks** | `listTasks`
