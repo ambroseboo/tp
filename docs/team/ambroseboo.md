@@ -45,6 +45,7 @@ Given below are my contributions to the project.
 <div style="page-break-after: always;"></div>
 
 ## **Contributions to the Developer Guide (Extracts)**:
+
 ### Recurring Tasks feature
 #### Implementation
 The recurring task feature allows users to add tasks that can be repeated by week, month, or year. It is facilitated
@@ -86,6 +87,7 @@ the SWEe-book application.
 <div style="page-break-after: always;"></div>
 
 ## **Contributions to the User Guide (Extracts)**:
+
 ### Adding a Task : `addTask`
 
 Adds a new task to SWEe-book.
