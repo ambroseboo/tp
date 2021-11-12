@@ -78,27 +78,24 @@ SWEe-book offers **one-stop integration solution to managing tasks and contacts 
 
 **:information_source: Clarifications for common terms used in this User Guide:**<br>
 
-* GUI is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI <br>
-  refers to the contact and task lists as shown in the red box below. <br>
+* **GUI** is short-form for Graphical User Interface, which refers to what the user sees as a graphic. In SWEe-book, the GUI refers to the contact and task lists as shown in the red box below. <br>
   ![GUI](images/UserGuideGUIRedBox.png)
   
-* CLI is short-form for Command Line Interface, it is what the user types commands into to query or add information into <br>
-  SWEe-book. It refers to the box at the top which users types into (also known as the command box) and the box directly <br>
-  below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
+* **CLI** is short-form for Command Line Interface, it is what the user types commands into to query or add information into SWEe-book. It refers to the box at the top which users type into (also known as the command box) and the box directly below it which shows feedback based on what command was typed. They are shown in the coloured boxes below. <br>
   ![CLI and Command Box](images/UserGuideCLIRedBox.png)
+
+* **Tasks** are items which you would like to keep track of with a description attached to them. The task list is displayed on the right side of the GUI.
+
+* **Contacts** are items which signify persons who you would like to keep a contact of. The contact list displayed on the left side of the GUI.
   
-* Commands are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`) <br>
-  and the parameters to the command. Explanation of parameters is shown below.
+* **Commands** are what the user types into the command box. They consist of the command keyword (eg. `add`, `find`, `addTask`)and the parameters to the command. Explanation of parameters is shown below.
   
-* Parameters are the terms that the user types after the command keyword to narrow the scope of their query. There can  <br>
-  any number of parameters to a command, even 0, depending on the command.  <br>
-  An example of parameters is in the command <br>
-  format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,  <br>
-  (`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all <br>
-  parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
+* **Parameters** are the terms that the user types after the command keyword to narrow the scope of their query. There can any number of parameters to a command, even 0, depending on the command.
+  An example of parameters is in the command format `add n/NAME g/GROUP1 [g/GROUP2] p/PHONE_NUMBER e/EMAIL tg/TELEGRAM_USERNAME gh/GITHUB_USERNAME`,(`n/NAME`, `g/GROUP1`, `[g/GROUP2]`, `p/PHONE_NUMBER`, `e/EMAIL`, `tg/TELEGRAM_USERNAME`, `gh/GITHUB_USERNAME`) are all parameters. Do note parameters in square brackets (`[g/GROUP2]`) are optional.
   
-* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the  <br>
-  command box, or items that will show up in the GUI as a result.
+* Do note that any highlighted words (eg. `add`) in this User Guide refers to words that can be typed into the command box, or items that will show up in the GUI as a result. <br>
+
+* **INDEX** refers to a number which corresponds to a task's/contact's position in the tasklist/contact list. (eg. INDEX 1 means it's the first task on the task list)
 
 </div>
 
@@ -268,8 +265,9 @@ Format: `addTask d/DESCRIPTION g/GROUP type/TYPE [date/DATE] [pty/PRIORITY] [rec
 * `TYPE` refers to one of the 3 types of tasks: `todo`, `event` or `deadline`
 * `DATE` is in YYYY-MM-DD format and is only needed for events or deadlines (i.e. `DATE` is optional for Todo tasks)
 * `PRIORITY` refers to one of the 3 levels of priorities / importance of the task: `low`, `med` (default) or `high`
-* `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could occur: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
+* `RECURRING_FREQUENCY` refers to one of the 3 different frequencies that the task could repeat itself: `week`, `month` or `year` (where `week` means that the task is recurring weekly)
     * Any Task that has a recurring frequency must have a date as well, for example a Todo with recurring frequency must have a date.
+    * If a Task has a recurring frequency and its date is initialised to be in the last week/month/year, it will be set to the current week/month/year in the next boot up of the application.
 
 Examples:
 * `addTask d/Project meeting g/CS2103T type/todo pty/low`
